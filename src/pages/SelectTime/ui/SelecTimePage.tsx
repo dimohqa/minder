@@ -1,4 +1,4 @@
-import { Navigation } from "@/shared/ui/Calendar";
+import { Calendar, Navigation } from "@/shared/ui/Calendar";
 import { Steps, Title } from "@telegram-apps/telegram-ui";
 import { progressCount } from "../model/const/constants";
 import dayjs from "dayjs";
@@ -13,13 +13,14 @@ export const SelectTimePage = () => {
   return (
     <div className={styles.wrapper}>
       <Steps count={3} progress={progressCount} />
-      <Title className={styles.title}>Время</Title>
+      <Title level="1" className={styles.title}>Время</Title>
       <Navigation
         year={year}
         monthIndex={monthIndex}
         changeYear={setYear}
         changeMonthIndex={setMonthIndex}
       />
+      <Calendar />
     </div>
   );
 };
