@@ -7,6 +7,7 @@ import { months, firstMonthIndex, lastMonthIndex } from "../model/const/dates";
 import { Select } from "@telegram-apps/telegram-ui";
 
 import styles from "./Navigaton.module.css";
+import { useThemeParams } from "@tma.js/sdk-react";
 
 type NavigationProps = {
   monthIndex?: number;
@@ -14,6 +15,8 @@ type NavigationProps = {
 };
 
 export const Navigation: FC<NavigationProps> = (props) => {
+  const theme = useThemeParams();
+
   const [monthIndex, setMonthIndex] = useState<number>(
     props.monthIndex ?? dayjs().month()
   );
@@ -60,7 +63,7 @@ export const Navigation: FC<NavigationProps> = (props) => {
   return (
     <div className={styles.navigation}>
       <Button
-        mode="gray"
+        style={{ backgroundColor: theme.bgColor }}
         onClick={onClickPrevMonth}
         disabled={disabledPrevMonthButton}
       >
@@ -90,7 +93,7 @@ export const Navigation: FC<NavigationProps> = (props) => {
         {/* <Button mode='gray'>{year}</Button> */}
       </div>
       <Button
-        mode="gray"
+        style={{ backgroundColor: theme.bgColor }}
         onClick={onClickNextMonth}
         disabled={disabledNextMonthButton}
       >
