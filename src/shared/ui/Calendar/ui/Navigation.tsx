@@ -1,5 +1,5 @@
 import { Button } from "@telegram-apps/telegram-ui";
-import { ChangeEvent, FC, useState } from "react";
+import { ChangeEvent, FC } from "react";
 import dayjs from "dayjs";
 import { Icon24ChevronLeft } from "@telegram-apps/telegram-ui/dist/icons/24/chevron_left";
 import { Icon24ChevronRight } from "@telegram-apps/telegram-ui/dist/icons/24/chevron_right";
@@ -12,53 +12,55 @@ import styles from "./Navigaton.module.css";
 type NavigationProps = {
   monthIndex?: number;
   year?: number;
+  changeMonthIndex: (month: number) => void;
+  changeYear: (year: number) => void;
 };
 
-export const Navigation: FC<NavigationProps> = (props) => {
+export const Navigation: FC<NavigationProps> = ({
+  monthIndex = dayjs().month(),
+  year = dayjs().year(),
+  changeMonthIndex,
+  changeYear,
+}) => {
   const theme = useThemeParams();
-
-  const [monthIndex, setMonthIndex] = useState<number>(
-    props.monthIndex ?? dayjs().month()
-  );
-  const [year, setYear] = useState<number>(props.year ?? dayjs().year());
 
   const onClickNextMonth = () => {
     const isLastMonth = monthIndex === lastMonthIndex;
 
     if (isLastMonth) {
-      setMonthIndex(firstMonthIndex);
-      setYear(year + 1);
+      changeMonthIndex(firstMonthIndex);
+      changeYear(year + 1);
 
       return;
     }
 
-    setMonthIndex(monthIndex + 1);
+    changeMonthIndex(monthIndex + 1);
   };
 
   const onClickPrevMonth = () => {
     const isFirstMonth = monthIndex === firstMonthIndex;
 
     if (isFirstMonth) {
-      setMonthIndex(lastMonthIndex);
-      setYear(year - 1);
+      changeMonthIndex(lastMonthIndex);
+      changeYear(year - 1);
 
       return;
     }
 
-    setMonthIndex(monthIndex - 1);
+    changeMonthIndex(monthIndex - 1);
   };
 
   const onChangeYear = (e: ChangeEvent<HTMLSelectElement>) => {
-    setYear(+e.currentTarget.value);
+    changeYear(+e.currentTarget.value);
   };
   const onChangeMonth = (e: ChangeEvent<HTMLSelectElement>) => {
-    setMonthIndex(months.findIndex(value => value === e.currentTarget.value));
+    changeMonthIndex(months.findIndex((value) => value === e.currentTarget.value));
   };
 
   const disabledPrevMonthButton =
     year === dayjs().year() - 1 && monthIndex === firstMonthIndex;
   const disabledNextMonthButton =
-    year=== dayjs().year() + 1 && monthIndex === lastMonthIndex;
+    year === dayjs().year() + 1 && monthIndex === lastMonthIndex;
 
   return (
     <div className={styles.navigation}>
@@ -79,11 +81,7 @@ export const Navigation: FC<NavigationProps> = (props) => {
             <option key={month}>{month}</option>
           ))}
         </Select>
-        <Select
-          className={styles.year}
-          value={year}
-          onChange={onChangeYear}
-        >
+        <Select className={styles.year} value={year} onChange={onChangeYear}>
           <option>{year - 1}</option>
           <option>{year}</option>
           <option>{year + 1}</option>
