@@ -69,7 +69,6 @@ export const Navigation: FC<NavigationProps> = (props) => {
       <div className={styles.datePickerButtons}>
         <Select
           className={styles.month}
-          defaultValue={monthIndex}
           value={months[monthIndex]}
           onChange={onChangeMonth}
         >
@@ -79,7 +78,6 @@ export const Navigation: FC<NavigationProps> = (props) => {
         </Select>
         <Select
           className={styles.year}
-          defaultValue={year}
           value={year}
           onChange={onChangeYear}
         >
