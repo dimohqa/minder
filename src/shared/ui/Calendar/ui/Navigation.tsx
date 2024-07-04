@@ -1,5 +1,5 @@
 import { Button } from "@telegram-apps/telegram-ui";
-import { FC, useState } from "react";
+import { ChangeEvent, FC, useState } from "react";
 import dayjs from "dayjs";
 import { Icon24ChevronLeft } from "@telegram-apps/telegram-ui/dist/icons/24/chevron_left";
 import { Icon24ChevronRight } from "@telegram-apps/telegram-ui/dist/icons/24/chevron_right";
@@ -45,10 +45,17 @@ export const Navigation: FC<NavigationProps> = (props) => {
     setMonthIndex(monthIndex - 1);
   };
 
+  const onChangeYear = (e: ChangeEvent<HTMLSelectElement>) => {
+    setYear(+e.currentTarget.value);
+  };
+  const onChangeMonth = (e: ChangeEvent<HTMLSelectElement>) => {
+    setMonthIndex(months.findIndex(value => value === e.currentTarget.value));
+  };
+
   const disabledPrevMonthButton =
-    year <= dayjs().year() - 1 && monthIndex === firstMonthIndex;
+    year === dayjs().year() - 1 && monthIndex === firstMonthIndex;
   const disabledNextMonthButton =
-    year >= dayjs().year() + 1 && monthIndex === lastMonthIndex;
+    year=== dayjs().year() + 1 && monthIndex === lastMonthIndex;
 
   return (
     <div className={styles.navigation}>
@@ -60,18 +67,27 @@ export const Navigation: FC<NavigationProps> = (props) => {
         <Icon24ChevronLeft className={styles.chevronIcon} />
       </Button>
       <div className={styles.datePickerButtons}>
-        <Select className={styles.month}>
-          {months.map((month, index) => (
-            <option key={month} selected={monthIndex === index}>
-              {month}
-            </option>
+        <Select
+          className={styles.month}
+          defaultValue={monthIndex}
+          value={months[monthIndex]}
+          onChange={onChangeMonth}
+        >
+          {months.map((month) => (
+            <option key={month}>{month}</option>
           ))}
         </Select>
-        <Select className={styles.year}>
+        <Select
+          className={styles.year}
+          defaultValue={year}
+          value={year}
+          onChange={onChangeYear}
+        >
           <option>{year - 1}</option>
-          <option selected>{year}</option>
+          <option>{year}</option>
           <option>{year + 1}</option>
         </Select>
+        {/* Если select'ы по итогу не подойдут, тк они громоздкие, но контекстного меню в ui готового нет*/}
         {/* <Button mode='gray'>{months[monthIndex]}</Button> */}
         {/* <Button mode='gray'>{year}</Button> */}
       </div>
