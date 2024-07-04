@@ -5,9 +5,9 @@ import { Icon24ChevronLeft } from "@telegram-apps/telegram-ui/dist/icons/24/chev
 import { Icon24ChevronRight } from "@telegram-apps/telegram-ui/dist/icons/24/chevron_right";
 import { months, firstMonthIndex, lastMonthIndex } from "../model/const/dates";
 import { Select } from "@telegram-apps/telegram-ui";
+import { useThemeParams } from "@tma.js/sdk-react";
 
 import styles from "./Navigaton.module.css";
-import { useThemeParams } from "@tma.js/sdk-react";
 
 type NavigationProps = {
   monthIndex?: number;
