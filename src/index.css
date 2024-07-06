@@ -1,5 +1,15 @@
 body {
   background: var(--tg-theme-secondary-bg-color, white);
+  font-family: 'Roboto';
   padding: 0;
   margin: 0;
+}
+
+:root {
+  .rdp {
+    margin: 0;
+    --rdp-cell-size: 50px;
+    --rdp-accent-color: var(--tgui--button_color);
+    --rdp-background-color: var(--tg-bg-color);
+  }
 }

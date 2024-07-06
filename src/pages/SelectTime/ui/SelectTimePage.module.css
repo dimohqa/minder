@@ -1,7 +1,25 @@
 .wrapper {
-  margin: 0 1rem;
+  position: relative;
+  margin: 0 1rem 80px;
 }
 
 .title {
-  padding: 0.5rem 0 0.75rem;
+  padding: 0.5rem 0 0;
+}
+
+.timeButton {
+  width: 80px;
+  margin: 0 0.5rem 1rem;
+}
+
+.availableTimes {
+  margin: 1rem 0;
+}
+
+.submitButton {
+  width: calc(100% - 2rem);
+  margin: 0 1rem;
+  position: fixed !important;
+  bottom: 1rem;
+  left: 0;
 }
