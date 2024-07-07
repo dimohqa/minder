@@ -1,0 +1,27 @@
+.wrapper {
+  position: relative;
+  margin: 0 1rem 80px;
+}
+
+.title {
+  padding: 0.5rem 0 0;
+}
+
+.timeButton {
+  width: 75px;
+  margin: 0 2px 1rem;
+}
+
+.availableTimes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  margin: 1rem 0 6rem;
+}
+
+.submitButton {
+  width: calc(100% - 2rem);
+  margin: 0 1rem;
+  position: fixed !important;
+  bottom: 2rem;
+  left: 0;
+}

@@ -7,6 +7,7 @@ import { Root } from '@/components/Root';
 import './mockEnv.ts';
 
 import '@telegram-apps/telegram-ui/dist/styles.css';
+import "react-day-picker/dist/style.css";
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(<Root/>);
