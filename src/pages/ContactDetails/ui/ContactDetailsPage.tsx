@@ -56,13 +56,14 @@ export const ContactDetailsPage = () => {
               />
               <Input
                 id="phone"
+                type="tel"
                 placeholder={`Введите контактный номер для связи${isApplePlatform ? '*' : ''}`}
                 header="Телефон*"
                 status={errors?.phone ? "error" : undefined}
                 value={values.phone}
                 onFocus={(event) => {
                   if (event.currentTarget.value.length === 0) {
-                    setFieldValue('phone', '+7 ');
+                    setFieldValue('phone', '+7');
                   } 
                 }}
                 onChange={(event) => {
