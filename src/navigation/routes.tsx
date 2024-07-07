@@ -8,6 +8,7 @@ import { TONConnectPage } from '@/pages/TONConnectPage/TONConnectPage';
 import { ContactDetailsPage } from '@/pages/ContactDetails';
 import { SelectTimePage } from '@/pages/SelectTime';
 import { SelectServicePage } from '@/pages/SelectService/ui/SelectServicePage';
+import { SuccessPage } from '@/pages/SuccessPage';
 
 interface Route {
   path: string;
@@ -20,6 +21,7 @@ export const routes: Route[] = [
   { path: '/', Component: SelectServicePage },
   { path: '/date', Component: SelectTimePage },
   { path: '/contacts', Component: ContactDetailsPage },
+  { path: '/success', Component: SuccessPage },
   { path: '/init-data', Component: InitDataPage, title: 'Init Data' },
   { path: '/theme-params', Component: ThemeParamsPage, title: 'Theme Params' },
   { path: '/launch-params', Component: LaunchParamsPage, title: 'Launch Params' },

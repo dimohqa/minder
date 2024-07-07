@@ -14,12 +14,19 @@ import { formSchema, Notification, progressCount } from "../model/constants";
 import { Formik } from "formik";
 import cx from "classnames";
 import { useLaunchParams } from "@tma.js/sdk-react";
+import { useNavigate } from "react-router-dom";
 
 import styles from "./ContactDetailsPage.module.css";
 
 export const ContactDetailsPage = () => {
   const lp = useLaunchParams();
+  const navigate = useNavigate();
+
   const isApplePlatform = ["macos", "ios"].includes(lp.platform);
+
+  const onSubmit = () => {
+    navigate('/success');
+  }
 
   return (
     <div>
@@ -111,7 +118,7 @@ export const ContactDetailsPage = () => {
               subheader="1 950 ₽"
               className={cx(styles.costBanner, { [styles.wrapper]: isApplePlatform })}
             />
-            <Button type="submit" size="l" className={cx(styles.submitButton, styles.wrapper)}>
+            <Button type="submit" size="l" className={cx(styles.submitButton, styles.wrapper)} onClick={onSubmit}>
               Записаться
             </Button>
           </form>
