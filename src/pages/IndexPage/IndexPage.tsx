@@ -2,7 +2,6 @@ import { Section, Cell, Image, List } from "@telegram-apps/telegram-ui";
 import type { FC } from "react";
 
 import { Link } from "@/components/Link/Link.tsx";
-import { Navigation } from "@/shared/ui/Calendar";
 
 import tonSvg from "./ton.svg";
 
@@ -12,7 +11,6 @@ export const IndexPage: FC = () => {
   return (
     <>
       <List>
-        <Navigation />
         <Section
           header="Features"
           footer="You can use these pages to learn more about features, provided by Telegram Mini Apps and other useful projects"

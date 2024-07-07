@@ -7,6 +7,7 @@ import { ThemeParamsPage } from '@/pages/ThemeParamsPage/ThemeParamsPage.tsx';
 import { TONConnectPage } from '@/pages/TONConnectPage/TONConnectPage';
 import { ContactDetailsPage } from '@/pages/ContactDetails';
 import { SelectTimePage } from '@/pages/SelectTime';
+import { SelectServicePage } from '@/pages/SelectService/ui/SelectServicePage';
 
 interface Route {
   path: string;
@@ -16,6 +17,7 @@ interface Route {
 }
 
 export const routes: Route[] = [
+  { path: '/', Component: SelectServicePage },
   { path: '/date', Component: SelectTimePage },
   { path: '/contacts', Component: ContactDetailsPage },
   { path: '/init-data', Component: InitDataPage, title: 'Init Data' },

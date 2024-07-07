@@ -1,37 +1,30 @@
 import { Steps, Title } from "@telegram-apps/telegram-ui";
-import { progressCount } from "../model/const/constants";
+import { availableTimes, progressCount } from "../model/const/constants";
 import { useState } from "react";
 import { DayPicker } from "react-day-picker";
 import { Button } from "@telegram-apps/telegram-ui";
 import { ru } from "date-fns/locale";
 import { addMonths, getYear } from "date-fns";
+import { useNavigate } from "react-router-dom";
 
 import styles from "./SelectTimePage.module.css";
 
-// TODO: Add fetch times from API
-const availableTimes = [
-  "13:00",
-  "14:00",
-  "15:00",
-  "19:00",
-  "21:00",
-  "22:00",
-  "13:10",
-  "14:10",
-  "15:10",
-  "19:10",
-  "21:10",
-  "22:10",
-] as const;
-
 export const SelectTimePage = () => {
-  const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
+  const navigate = useNavigate();
+
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(
+    new Date()
+  );
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
 
   const onChangeSelectedDate = (selectedDate: Date | undefined) => {
     setSelectedDate(selectedDate);
     setSelectedTime(null);
-  }
+  };
+
+  const onSubmitTime = () => {
+    navigate("/contacts");
+  };
 
   const submitButtonIsVisible = selectedDate && selectedTime;
 
@@ -66,7 +59,15 @@ export const SelectTimePage = () => {
         ))}
       </div>
       <div className={styles.submitButtonWrapper}>
-        {submitButtonIsVisible && (<Button size="l" className={styles.submitButton}>Продолжить</Button>)}
+        {submitButtonIsVisible && (
+          <Button
+            size="l"
+            className={styles.submitButton}
+            onClick={onSubmitTime}
+          >
+            Продолжить
+          </Button>
+        )}
       </div>
     </div>
   );
