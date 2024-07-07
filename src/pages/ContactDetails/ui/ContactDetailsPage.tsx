@@ -24,10 +24,6 @@ export const ContactDetailsPage = () => {
 
   const isApplePlatform = ["macos", "ios"].includes(lp.platform);
 
-  const onSubmit = () => {
-    navigate('/success');
-  }
-
   return (
     <div>
       <Steps count={3} progress={progressCount} />
@@ -47,6 +43,7 @@ export const ContactDetailsPage = () => {
         validateOnBlur={false}
         onSubmit={(values) => {
           console.log("Submit!", values);
+          navigate('/success');
         }}
       >
         {({ values, handleChange, handleSubmit, errors, setFieldValue }) => (
@@ -118,7 +115,7 @@ export const ContactDetailsPage = () => {
               subheader="1 950 ₽"
               className={cx(styles.costBanner, { [styles.wrapper]: isApplePlatform })}
             />
-            <Button type="submit" size="l" className={cx(styles.submitButton, styles.wrapper)} onClick={onSubmit}>
+            <Button type="submit" size="l" className={cx(styles.submitButton, styles.wrapper)}>
               Записаться
             </Button>
           </form>
