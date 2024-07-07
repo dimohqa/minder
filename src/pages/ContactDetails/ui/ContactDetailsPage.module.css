@@ -1,0 +1,21 @@
+.wrapper {
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+}
+
+.title {
+  padding: 0.5rem 1.5rem 0;
+}
+
+.form {
+  margin: 1rem 0;
+}
+
+.costBanner {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.submitButton {
+  width: calc(100% - 3rem);
+}
