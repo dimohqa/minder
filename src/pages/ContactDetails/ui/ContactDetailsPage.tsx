@@ -10,32 +10,12 @@ import {
   Button,
   Section,
 } from "@telegram-apps/telegram-ui";
-import { progressCount } from "../model/constants";
+import { formSchema, Notification, progressCount } from "../model/constants";
 import { Formik } from "formik";
 import cx from "classnames";
-import * as yup from "yup";
 import { useLaunchParams } from "@tma.js/sdk-react";
 
 import styles from "./ContactDetailsPage.module.css";
-
-const phoneRegExp = /(^8|7|\+7)((\d{10})|(\s\(\d{3}\)\s\d{3}\s\d{2}\s\d{2}))/;
-// const onlyNumbersReg = new RegExp(/\d+$/);
-
-const formSchema = yup.object({
-  name: yup
-    .string()
-    .trim()
-    .max(60)
-    .required(),
-  phone: yup
-    .string()
-    .trim()
-    .matches(phoneRegExp)
-    .required(),
-  comment: yup.string().trim().max(210),
-  isCheckedPersInf: yup.boolean().isTrue(),
-  notification: yup.string().required(),
-});
 
 export const ContactDetailsPage = () => {
   const lp = useLaunchParams();
@@ -53,7 +33,7 @@ export const ContactDetailsPage = () => {
           phone: "",
           comment: "",
           isCheckedPersInf: true,
-          notification: "3h",
+          notification: Notification.THREE_HOURS,
         }}
         validationSchema={formSchema}
         validateOnChange={false}
@@ -106,10 +86,10 @@ export const ContactDetailsPage = () => {
                 value={values.notification}
                 className={cx(styles.formInput, styles.notification)}
               >
-                <option value="3h">За 3 часа</option>
-                <option value="1day">За день</option>
+                <option value={Notification.THREE_HOURS}>За 3 часа</option>
+                <option value={Notification.ONE_DAY}>За день</option>
                 {/* TODO: дизейблить, если запись ближе 3ех дней */}
-                <option value="3day">За 3 дня</option>
+                <option value={Notification.THREE_DAYS}>За 3 дня</option>
               </Select>
               <Cell
                 multiline
